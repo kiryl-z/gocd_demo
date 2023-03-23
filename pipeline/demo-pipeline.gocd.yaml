@@ -4,7 +4,7 @@ format_version: 3
 
 pipelines:
   Backend_DevDeployment:
-    group: demo_group_from_yaml
+    group: demoGroup
     materials:
       backend:
         git: https://github.com/kiryl-z/gocd_demo.git
