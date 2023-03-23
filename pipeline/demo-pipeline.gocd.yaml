@@ -4,8 +4,6 @@ environments:
   dev:
     environment_variables:
       DEPLOYMENT: dev
-    secure_variables:
-      ENV_PASSWORD: "s&Du#@$xsSa"
     pipelines:
       - yaml_created_pipeline
 
