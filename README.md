@@ -7,4 +7,4 @@ The docker-compose file contains one server and one agent:
 Note:
 
 * The server and agents will take a while to initialize and startup correctly. GoCD agent will automatically register with GoCD server (however agents need to be enabled from server UI before they can be used for any pipeline).
-* GoCD server can be accessed through: http://localhost:8153
+* GoCD server can be accessed through: http://localhost:8155

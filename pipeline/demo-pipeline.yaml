@@ -1,0 +1,22 @@
+format_version: 3
+
+
+
+pipelines:
+  Backend_DevDeployment:
+    group: demo_group_from_yaml
+    materials:
+      backend:
+        git: https://github.com/kiryl-z/gocd_demo.git
+        branch: master
+    stages:
+      - Hello_world:
+          clean_workspace: true
+          jobs:
+            Hello:
+              tasks:
+                - exec:
+                    run_if: passed
+                    command: /bin/bash
+                    arguments:
+                    - ./scripts/hello-world.sh
