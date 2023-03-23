@@ -1,0 +1,21 @@
+version: '3'
+services:
+  server:
+    image: gocd/gocd-server:v23.1.0
+    ports:
+      - "8155:8153"
+      - "8154:8154"
+    volumes:
+      - ./server/godata:/godata
+      - ./server/home:/home/go
+
+  agent:
+    image: gocd/gocd-agent-docker-dind:v23.1.0
+    depends_on:
+      - server
+    environment:
+      GO_SERVER_URL: https://server:8154/go
+    privileged: true
+    volumes:
+      - ./agents/agent-1/godata:/godata
+      - ./agents/agent-1/home:/home/go
