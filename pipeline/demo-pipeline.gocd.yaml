@@ -1,6 +1,6 @@
 format_version: 10
 pipelines:
-  manually_created_pipeline:
+  yaml_created_pipeline:
     group: yaml_group
     label_template: ${COUNT}
     lock_behavior: none
