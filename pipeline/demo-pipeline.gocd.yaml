@@ -1,22 +1,30 @@
-format_version: 3
-
-
-
+format_version: 10
 pipelines:
-  Backend_DevDeployment:
-    group: demoGroup
+  manually_created_pipeline:
+    group: yaml_group
+    label_template: ${COUNT}
+    lock_behavior: none
+    display_order: -1
     materials:
-      backend:
+      gocd_demo:
         git: https://github.com/kiryl-z/gocd_demo.git
+        shallow_clone: false
+        auto_update: true
         branch: master
     stages:
-      - Hello_world:
-          clean_workspace: true
-          jobs:
-            Hello:
-              tasks:
-                - exec:
-                    run_if: passed
-                    command: /bin/bash
-                    arguments:
-                    - ./scripts/hello-world.sh
+    - demo_stage:
+        fetch_materials: true
+        keep_artifacts: false
+        clean_workspace: false
+        approval:
+          type: success
+          allow_only_on_success: false
+        jobs:
+          hello_world:
+            timeout: 0
+            tasks:
+            - exec:
+                arguments:
+                - hello world!
+                command: echo
+                run_if: passed
