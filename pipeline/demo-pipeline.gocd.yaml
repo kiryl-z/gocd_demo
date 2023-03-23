@@ -1,4 +1,14 @@
 format_version: 10
+
+environments:
+  dev:
+    environment_variables:
+      DEPLOYMENT: dev
+    secure_variables:
+      ENV_PASSWORD: "s&Du#@$xsSa"
+    pipelines:
+      - yaml_created_pipeline
+
 pipelines:
   yaml_created_pipeline:
     group: yaml_group
@@ -17,8 +27,8 @@ pipelines:
         keep_artifacts: false
         clean_workspace: false
         approval:
-          type: success
-          allow_only_on_success: false
+          type: manual
+          allow_only_on_success: true
         jobs:
           hello_world:
             timeout: 0
