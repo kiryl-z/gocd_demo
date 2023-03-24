@@ -1,0 +1,1 @@
+echo $SHELL $GO_PIPELINE_LABEL "stage2"

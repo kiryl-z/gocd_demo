@@ -43,6 +43,24 @@ pipelines:
         keep_artifacts: false
         clean_workspace: false
         approval:
+          type: success
+          allow_only_on_success: true
+        jobs:
+          demo_job:
+            timeout: 0
+            tasks:
+              - exec:
+                  arguments:
+                    - -c
+                    - ./scripts/stage_2.sh
+                  command: /bin/bash
+                  run_if: passed
+
+    - stage_3:
+        fetch_materials: true
+        keep_artifacts: false
+        clean_workspace: false
+        approval:
           type: manual
           allow_only_on_success: true
         jobs:
@@ -52,6 +70,6 @@ pipelines:
               - exec:
                   arguments:
                     - -c
-                    - echo $SHELL $GO_PIPELINE_LABEL stage2
+                    - echo $SHELL $GO_PIPELINE_LABEL stage3
                   command: /bin/bash
                   run_if: passed
