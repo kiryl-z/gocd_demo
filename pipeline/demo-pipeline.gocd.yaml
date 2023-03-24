@@ -20,7 +20,7 @@ pipelines:
         auto_update: true
         branch: master
     stages:
-    - demo_stage:
+    - stage_1:
         fetch_materials: true
         keep_artifacts: false
         clean_workspace: false
@@ -28,11 +28,30 @@ pipelines:
           type: manual
           allow_only_on_success: true
         jobs:
-          hello_world:
+          demo_job:
             timeout: 0
             tasks:
             - exec:
                 arguments:
-                - hello world!
-                command: echo
+                  - -c
+                  - echo $SHELL $GO_PIPELINE_LABEL stage1
+                command: /bin/bash
                 run_if: passed
+
+    - stage_2:
+        fetch_materials: true
+        keep_artifacts: false
+        clean_workspace: false
+        approval:
+          type: manual
+          allow_only_on_success: true
+        jobs:
+          demo_job:
+            timeout: 0
+            tasks:
+              - exec:
+                  arguments:
+                    - -c
+                    - echo $SHELL $GO_PIPELINE_LABEL stage2
+                  command: /bin/bash
+                  run_if: passed
