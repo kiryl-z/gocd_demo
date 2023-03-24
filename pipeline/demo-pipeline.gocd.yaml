@@ -51,7 +51,6 @@ pipelines:
             tasks:
               - exec:
                   arguments:
-                    - -c
                     - ./scripts/stage_2.sh
                   command: /bin/bash
                   run_if: passed
